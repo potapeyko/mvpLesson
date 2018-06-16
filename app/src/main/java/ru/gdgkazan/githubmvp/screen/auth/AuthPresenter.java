@@ -1,12 +1,13 @@
 package ru.gdgkazan.githubmvp.screen.auth;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
+
 
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.githubmvp.R;
 import ru.gdgkazan.githubmvp.repository.RepositoryProvider;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
+import ru.gdgkazan.githubmvp.utils.TextUtils;
 
 /**
  * @author Artur Vasilov
@@ -21,9 +22,8 @@ public class AuthPresenter {
         mLifecycleHandler = lifecycleHandler;
         mAuthView = authView;
     }
-
     public void init() {
-        String token = PreferenceUtils.getToken();
+        String token = RepositoryProvider.provideKeyValueStorage().getToken();
         if (!TextUtils.isEmpty(token)) {
             mAuthView.openRepositoriesScreen();
         }
