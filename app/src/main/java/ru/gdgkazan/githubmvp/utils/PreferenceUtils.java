@@ -9,38 +9,24 @@ import rx.Observable;
 /**
  * @author Artur Vasilov
  */
-public final class PreferenceUtils {
+public interface PreferenceUtils {
 
-    private static final String TOKEN_KEY = "github_token";
-    private static final String USER_NAME_KEY = "user_name";
-    private static final String WALKTHROUGH_PASSED_KEY = "walkthrough_passed";
+//    private static final String TOKEN_KEY = "github_token";
+//    private static final String USER_NAME_KEY = "user_name";
+//    private static final String WALKTHROUGH_PASSED_KEY = "walkthrough_passed";
 
-    private PreferenceUtils() {
-    }
 
-    public static void saveToken(@NonNull String token) {
-        Hawk.put(TOKEN_KEY, token);
-    }
+    public void saveToken(@NonNull String token);
 
     @NonNull
-    public static String getToken() {
-        return Hawk.get(TOKEN_KEY, "");
-    }
+    public String getToken();
 
-    public static void saveUserName(@NonNull String userName) {
-        Hawk.put(USER_NAME_KEY, userName);
-    }
+    public void saveUserName(@NonNull String userName);
 
     @NonNull
-    public static Observable<String> getUserName() {
-        return Hawk.getObservable(USER_NAME_KEY, "");
-    }
+    public  Observable<String> getUserName();
 
-    public static void saveWalkthroughPassed() {
-        Hawk.put(WALKTHROUGH_PASSED_KEY, true);
-    }
+    public  void saveWalkthroughPassed();
 
-    public static boolean isWalkthroughPassed() {
-        return Hawk.get(WALKTHROUGH_PASSED_KEY, false);
-    }
+    public  boolean isWalkthroughPassed() ;
 }

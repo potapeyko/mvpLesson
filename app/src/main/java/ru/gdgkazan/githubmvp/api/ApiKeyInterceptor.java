@@ -9,6 +9,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
+import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
 
 /**
  * @author Artur Vasilov
@@ -18,7 +19,7 @@ public final class ApiKeyInterceptor implements Interceptor {
     private final String mToken;
 
     private ApiKeyInterceptor() {
-        mToken = PreferenceUtils.getToken();
+        mToken = PreferenceUtilsProvider.providePreferenceUtils().getToken();
     }
 
     @NonNull

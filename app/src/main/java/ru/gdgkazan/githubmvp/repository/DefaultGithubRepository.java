@@ -13,6 +13,7 @@ import ru.gdgkazan.githubmvp.content.CommitResponse;
 import ru.gdgkazan.githubmvp.content.Repository;
 import ru.gdgkazan.githubmvp.utils.AuthorizationUtils;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
+import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
 import rx.Observable;
 
 public class DefaultGithubRepository implements GithubRepository {
@@ -63,8 +64,8 @@ public class DefaultGithubRepository implements GithubRepository {
         return ApiFactory.getGithubService()
                 .authorize(authorizationString, AuthorizationUtils.createAuthorizationParam())
                 .flatMap(authorization -> {
-                    PreferenceUtils.saveToken(authorization.getToken());
-                    PreferenceUtils.saveUserName(login);
+                    PreferenceUtilsProvider.providePreferenceUtils().saveToken(authorization.getToken());
+                    PreferenceUtilsProvider.providePreferenceUtils().saveUserName(login);
                     ApiFactory.recreate();
                     return Observable.just(authorization);
                 })

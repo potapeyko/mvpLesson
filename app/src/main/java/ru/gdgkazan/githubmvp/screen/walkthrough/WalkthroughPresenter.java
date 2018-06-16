@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.gdgkazan.githubmvp.content.Benefit;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
+import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
 
 /**
  * @author Artur Vasilov
@@ -22,7 +22,7 @@ public class WalkthroughPresenter {
     }
 
     public void init() {
-        if (PreferenceUtils.isWalkthroughPassed()) {
+        if (PreferenceUtilsProvider.providePreferenceUtils().isWalkthroughPassed()){
             mView.openAuthActivityScreen();
         } else {
             mView.setBenefits(getBenefits());
@@ -42,7 +42,7 @@ public class WalkthroughPresenter {
 
     public void onBtnClick() {
         if (isLastBenefit()) {
-            PreferenceUtils.saveWalkthroughPassed();
+            PreferenceUtilsProvider.providePreferenceUtils().saveWalkthroughPassed();
             mView.openAuthActivityScreen();
         } else {
             mCurrentItem++;
