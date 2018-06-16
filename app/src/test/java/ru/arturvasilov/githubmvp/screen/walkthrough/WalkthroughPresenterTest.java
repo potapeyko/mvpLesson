@@ -1,20 +1,14 @@
 package ru.arturvasilov.githubmvp.screen.walkthrough;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 
-import ru.arturvasilov.githubmvp.test.MockLifecycleHandler;
 import ru.arturvasilov.githubmvp.test.TestPreferenceUtils;
-import ru.arturvasilov.rxloader.LifecycleHandler;
-import ru.gdgkazan.githubmvp.screen.repositories.RepositoriesPresenter;
-import ru.gdgkazan.githubmvp.screen.repositories.RepositoriesView;
 import ru.gdgkazan.githubmvp.screen.walkthrough.WalkthroughPresenter;
 import ru.gdgkazan.githubmvp.screen.walkthrough.WalkthroughView;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
 
 import static junit.framework.Assert.assertNotNull;
@@ -90,8 +84,7 @@ public class WalkthroughPresenterTest {
 
 
 
-    /**
-     * TODO : task
+    /*
      *
      * Create tests for {@link ru.gdgkazan.githubmvp.screen.walkthrough.WalkthroughPresenter}
      *

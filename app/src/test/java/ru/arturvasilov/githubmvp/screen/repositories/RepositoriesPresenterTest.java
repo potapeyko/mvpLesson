@@ -16,11 +16,8 @@ import java.util.List;
 import ru.arturvasilov.githubmvp.test.MockLifecycleHandler;
 import ru.arturvasilov.githubmvp.test.TestGithubRepository;
 import ru.arturvasilov.rxloader.LifecycleHandler;
-import ru.gdgkazan.githubmvp.content.Authorization;
 import ru.gdgkazan.githubmvp.content.Repository;
 import ru.gdgkazan.githubmvp.repository.RepositoryProvider;
-import ru.gdgkazan.githubmvp.screen.auth.AuthPresenter;
-import ru.gdgkazan.githubmvp.screen.auth.AuthView;
 import ru.gdgkazan.githubmvp.screen.repositories.RepositoriesPresenter;
 import ru.gdgkazan.githubmvp.screen.repositories.RepositoriesView;
 import rx.Observable;
@@ -47,6 +44,7 @@ public class RepositoriesPresenterTest {
     public void testCreated() throws Exception {
         assertNotNull(mPresenter);
     }
+
     @Test
     public void testNoActionsWithView() throws Exception {
         Mockito.verifyNoMoreInteractions(mRepoView);
@@ -71,6 +69,7 @@ public class RepositoriesPresenterTest {
 
 
     }
+
     @Test
     public void testErrorInit() {
         RepoTestRepository repoTestRepository = new RepoTestRepository(false);
@@ -99,7 +98,7 @@ public class RepositoriesPresenterTest {
         List<Repository> mRepositories;
 
         public RepoTestRepository(boolean success) {
-            mSuccess=success;
+            mSuccess = success;
             mRepositories = new ArrayList<>();
             mRepositories.add(Mockito.mock(Repository.class));
             mRepositories.add(Mockito.mock(Repository.class));

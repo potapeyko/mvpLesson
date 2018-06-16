@@ -3,14 +3,8 @@ package ru.arturvasilov.githubmvp.test;
 
 import android.support.annotation.NonNull;
 
-import java.util.Objects;
-
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
 import rx.Observable;
-
-/**
- * Created by DmitryPC on 16.06.2018.
- */
 
 public class TestPreferenceUtils implements PreferenceUtils {
 
@@ -18,11 +12,9 @@ public class TestPreferenceUtils implements PreferenceUtils {
         this.mWalkthroughPassed = walkthroughPassed;
     }
 
-    public void setWalkthroughPassed(boolean walkthroughPassed) {
-        this.mWalkthroughPassed = walkthroughPassed;
-    }
 
-    private boolean mWalkthroughPassed=false;
+    private boolean mWalkthroughPassed = false;
+
     @Override
     public void saveToken(@NonNull String token) {
         // Do nothing
@@ -47,7 +39,7 @@ public class TestPreferenceUtils implements PreferenceUtils {
 
     @Override
     public void saveWalkthroughPassed() {
-        mWalkthroughPassed=true;
+        mWalkthroughPassed = true;
     }
 
     @Override
