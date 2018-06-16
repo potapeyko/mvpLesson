@@ -14,7 +14,7 @@ import ru.gdgkazan.githubmvp.content.Benefit;
  */
 public class WalkthroughAdapter extends FragmentStatePagerAdapter {
 
-    private final List<Benefit> mBenefits;
+    private List<Benefit> mBenefits;
 
     public WalkthroughAdapter(FragmentManager fm, @NonNull List<Benefit> benefits) {
         super(fm);
@@ -29,5 +29,10 @@ public class WalkthroughAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return mBenefits.size();
+    }
+
+    public void changeData(@NonNull List<Benefit> benefits) {
+        mBenefits = benefits;
+        this.notifyDataSetChanged();
     }
 }
