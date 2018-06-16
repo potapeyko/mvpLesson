@@ -9,15 +9,33 @@ import io.realm.RealmResults;
 import ru.arturvasilov.rxloader.RxUtils;
 import ru.gdgkazan.githubmvp.api.ApiFactory;
 import ru.gdgkazan.githubmvp.content.Authorization;
+import ru.gdgkazan.githubmvp.content.CommitResponse;
 import ru.gdgkazan.githubmvp.content.Repository;
 import ru.gdgkazan.githubmvp.utils.AuthorizationUtils;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
 import rx.Observable;
 
-/**
- * @author Artur Vasilov
- */
 public class DefaultGithubRepository implements GithubRepository {
+
+    @NonNull
+    @Override
+    public Observable<List<CommitResponse>> commits(@NonNull String user, @NonNull String repo) {
+        return ApiFactory.getGithubService()
+                .commits(user, repo)
+                .flatMap(commitResponses -> {
+                    Realm.getDefaultInstance().executeTransaction(realm -> {
+                        realm.delete(CommitResponse.class);
+                        realm.insert(commitResponses);
+                    });
+                    return Observable.just(commitResponses);
+                })
+                .onErrorResumeNext(throwable -> {
+                    Realm realm = Realm.getDefaultInstance();
+                    RealmResults<CommitResponse> commits = realm.where(CommitResponse.class).findAll();
+                    return Observable.just(realm.copyFromRealm(commits));
+                })
+                .compose(RxUtils.async());
+    }
 
     @NonNull
     @Override

@@ -9,6 +9,7 @@ import io.realm.RealmObject;
 /**
  * @author Artur Vasilov
  */
+
 public class Commit extends RealmObject {
 
     private String mRepoName;

@@ -4,10 +4,12 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * @author Artur Vasilov
  */
-public class CommitResponse {
+public class CommitResponse extends RealmObject {
 
     @SerializedName("commit")
     private Commit mCommit;
