@@ -8,8 +8,7 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
+import ru.gdgkazan.githubmvp.repository.RepositoryProvider;
 
 /**
  * @author Artur Vasilov
@@ -19,7 +18,7 @@ public final class ApiKeyInterceptor implements Interceptor {
     private final String mToken;
 
     private ApiKeyInterceptor() {
-        mToken = PreferenceUtilsProvider.providePreferenceUtils().getToken();
+        mToken = RepositoryProvider.provideKeyValueStorage().getToken();
     }
 
     @NonNull

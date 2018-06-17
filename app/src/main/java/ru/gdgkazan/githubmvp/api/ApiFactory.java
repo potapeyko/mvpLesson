@@ -2,7 +2,6 @@ package ru.gdgkazan.githubmvp.api;
 
 import android.support.annotation.NonNull;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,8 +11,6 @@ import ru.gdgkazan.githubmvp.BuildConfig;
  * @author Artur Vasilov
  */
 public final class ApiFactory {
-
-    private static OkHttpClient sClient;
 
     private static volatile GithubService sService;
 
@@ -34,9 +31,12 @@ public final class ApiFactory {
         return service;
     }
 
+    public static void setGithubService(@NonNull GithubService service) {
+        sService = service;
+    }
+
     public static void recreate() {
-        sClient = null;
-        sClient = getClient();
+        OkHttpProvider.recreate();
         sService = buildRetrofit().create(GithubService.class);
     }
 
@@ -44,31 +44,9 @@ public final class ApiFactory {
     private static Retrofit buildRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_ENDPOINT)
-                .client(getClient())
+                .client(OkHttpProvider.provideClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-    }
-
-    @NonNull
-    private static OkHttpClient getClient() {
-        OkHttpClient client = sClient;
-        if (client == null) {
-            synchronized (ApiFactory.class) {
-                client = sClient;
-                if (client == null) {
-                    client = sClient = buildClient();
-                }
-            }
-        }
-        return client;
-    }
-
-    @NonNull
-    private static OkHttpClient buildClient() {
-        return new OkHttpClient.Builder()
-                .addInterceptor(LoggingInterceptor.create())
-                .addInterceptor(ApiKeyInterceptor.create())
                 .build();
     }
 }

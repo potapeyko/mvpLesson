@@ -37,4 +37,8 @@ public class HawkKeyValueStorage implements KeyValueStorage {
         return Hawk.get(WALKTHROUGH_PASSED_KEY, false);
     }
 
+    @Override
+    public void clear() {
+        Hawk.clear();
+    }
 }

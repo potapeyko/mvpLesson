@@ -26,4 +26,6 @@ public interface KeyValueStorage {
     void saveWalkthroughPassed();
 
     boolean isWalkthroughPassed();
+
+    void clear();
 }

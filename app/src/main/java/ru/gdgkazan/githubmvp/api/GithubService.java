@@ -9,10 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import ru.gdgkazan.githubmvp.content.Commit;
+import ru.gdgkazan.githubmvp.content.Authorization;
 import ru.gdgkazan.githubmvp.content.CommitResponse;
 import ru.gdgkazan.githubmvp.content.Repository;
-import ru.gdgkazan.githubmvp.content.Authorization;
 import rx.Observable;
 
 /**
