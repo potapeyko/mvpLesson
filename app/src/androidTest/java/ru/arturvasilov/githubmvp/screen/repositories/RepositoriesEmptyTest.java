@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +25,7 @@ import static org.hamcrest.CoreMatchers.not;
 /**
  * @author Artur Vasilov
  */
-@RunWith(JUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class RepositoriesEmptyTest {
 
     private static final String ERROR = "error";

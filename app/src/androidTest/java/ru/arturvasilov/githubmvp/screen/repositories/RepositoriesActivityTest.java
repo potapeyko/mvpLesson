@@ -33,7 +33,8 @@ import static org.hamcrest.CoreMatchers.not;
 public class RepositoriesActivityTest {
 
     @Rule
-    public final ActivityTestRule<RepositoriesActivity> mActivityRule = new ActivityTestRule<>(RepositoriesActivity.class);
+    public final ActivityTestRule<RepositoriesActivity> mActivityRule =
+            new ActivityTestRule<>(RepositoriesActivity.class);
 
     @Before
     public void setUp() throws Exception {

@@ -7,6 +7,10 @@ import ru.gdgkazan.githubmvp.content.Benefit;
 
 public interface WalkthroughView  {
     void openAuthActivityScreen();
-    void showBenefit(int index, boolean isLastBenefit);
     void setBenefits(List<Benefit> benefits);
+
+    void showActionButtonText(int next_uppercase);
+
+    void scrollToNextBenefit();
+
 }

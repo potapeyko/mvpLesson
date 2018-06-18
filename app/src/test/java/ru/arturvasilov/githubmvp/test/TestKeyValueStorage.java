@@ -37,8 +37,24 @@ public class TestKeyValueStorage implements KeyValueStorage {
         // Do nothing
     }
 
+    private boolean isWalkthroughPassed;
+
+    public TestKeyValueStorage() {
+        isWalkthroughPassed=false;
+    }
+
+    public TestKeyValueStorage(boolean isWalkthroughPassed) {
+
+        this.isWalkthroughPassed = isWalkthroughPassed;
+    }
+
     @Override
     public boolean isWalkthroughPassed() {
-        return false;
+        return isWalkthroughPassed;
+    }
+
+    @Override
+    public void clear() {
+
     }
 }

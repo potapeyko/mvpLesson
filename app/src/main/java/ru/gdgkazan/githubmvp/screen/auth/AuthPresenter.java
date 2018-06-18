@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import ru.arturvasilov.rxloader.LifecycleHandler;
 import ru.gdgkazan.githubmvp.R;
 import ru.gdgkazan.githubmvp.repository.RepositoryProvider;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
 import ru.gdgkazan.githubmvp.utils.TextUtils;
 
 /**

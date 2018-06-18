@@ -12,8 +12,6 @@ import ru.gdgkazan.githubmvp.content.Authorization;
 import ru.gdgkazan.githubmvp.content.CommitResponse;
 import ru.gdgkazan.githubmvp.content.Repository;
 import ru.gdgkazan.githubmvp.utils.AuthorizationUtils;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
 import rx.Observable;
 
 public class DefaultGithubRepository implements GithubRepository {

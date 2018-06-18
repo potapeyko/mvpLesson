@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -63,20 +64,20 @@ public class WalkthroughActivity extends AppCompatActivity implements Walkthroug
         mPresenter.onPageChanged(selectedPage,fromUser);
     }
 
-    @Override
-    public void showBenefit(int index, boolean isLastBenefit) {
-        mActionButton.setText(isLastBenefit ? R.string.finish_uppercase : R.string.next_uppercase);//?
-        if (index == mPager.getCurrentItem()) {
-            return;
-        }
-        mPager.smoothScrollNext(getResources().getInteger(android.R.integer.config_mediumAnimTime));
-
-    }
 
     @Override
     public void setBenefits(List<Benefit> benefits) {//?
         mAdapter.changeData(benefits);
-        mActionButton.setText(R.string.next_uppercase);//?
+    }
+
+    @Override
+    public void showActionButtonText(@StringRes int buttonTextId)  {
+        mActionButton.setText(buttonTextId);
+    }
+
+    @Override
+    public void scrollToNextBenefit() {
+        mPager.smoothScrollNext(getResources().getInteger(android.R.integer.config_mediumAnimTime));
     }
 
     @Override

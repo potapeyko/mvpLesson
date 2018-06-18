@@ -1,12 +1,14 @@
 package ru.gdgkazan.githubmvp.screen.walkthrough;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.gdgkazan.githubmvp.R;
 import ru.gdgkazan.githubmvp.content.Benefit;
-import ru.gdgkazan.githubmvp.utils.PreferenceUtilsProvider;
+import ru.gdgkazan.githubmvp.repository.RepositoryProvider;
 
 /**
  * @author Artur Vasilov
@@ -22,10 +24,11 @@ public class WalkthroughPresenter {
     }
 
     public void init() {
-        if (PreferenceUtilsProvider.providePreferenceUtils().isWalkthroughPassed()){
+        if (RepositoryProvider.provideKeyValueStorage().isWalkthroughPassed()){
             mView.openAuthActivityScreen();
         } else {
             mView.setBenefits(getBenefits());
+            mView.showActionButtonText(R.string.next_uppercase);
         }
     }
 
@@ -42,11 +45,12 @@ public class WalkthroughPresenter {
 
     public void onBtnClick() {
         if (isLastBenefit()) {
-            PreferenceUtilsProvider.providePreferenceUtils().saveWalkthroughPassed();
+            RepositoryProvider.provideKeyValueStorage().saveWalkthroughPassed();
             mView.openAuthActivityScreen();
         } else {
             mCurrentItem++;
-            mView.showBenefit(mCurrentItem, isLastBenefit());
+            showBenefitText();
+            mView.scrollToNextBenefit();
         }
     }
 
@@ -57,7 +61,11 @@ public class WalkthroughPresenter {
     public void onPageChanged(int selectedPage, boolean fromUser) {
         if (fromUser) {
             mCurrentItem = selectedPage;
-            mView.showBenefit(mCurrentItem, isLastBenefit());
+            showBenefitText();
         }
+    }
+    private void showBenefitText() {
+        @StringRes int buttonTextId = isLastBenefit() ? R.string.finish_uppercase : R.string.next_uppercase;
+        mView.showActionButtonText(buttonTextId);
     }
 }
